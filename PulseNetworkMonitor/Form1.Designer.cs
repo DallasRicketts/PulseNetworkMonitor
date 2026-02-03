@@ -45,8 +45,18 @@
             devicesToolStripMenuItem1 = new ToolStripMenuItem();
             consoleToolStripMenuItem1 = new ToolStripMenuItem();
             exitToolStripMenuItem1 = new ToolStripMenuItem();
+            richTextBox1 = new RichTextBox();
+            numericUpDown1 = new NumericUpDown();
+            numericUpDown2 = new NumericUpDown();
+            scanBtn = new Button();
+            progressBar1 = new ProgressBar();
+            label1 = new Label();
+            label2 = new Label();
+            clearBtn = new Button();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // notifyIcon1
@@ -112,7 +122,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 28);
+            menuStrip1.Size = new Size(432, 28);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -126,36 +136,118 @@
             // scanToolStripMenuItem1
             // 
             scanToolStripMenuItem1.Name = "scanToolStripMenuItem1";
-            scanToolStripMenuItem1.Size = new Size(224, 26);
+            scanToolStripMenuItem1.Size = new Size(145, 26);
             scanToolStripMenuItem1.Text = "Scan";
             scanToolStripMenuItem1.Click += scanToolStripMenuItem1_Click;
             // 
             // devicesToolStripMenuItem1
             // 
             devicesToolStripMenuItem1.Name = "devicesToolStripMenuItem1";
-            devicesToolStripMenuItem1.Size = new Size(224, 26);
+            devicesToolStripMenuItem1.Size = new Size(145, 26);
             devicesToolStripMenuItem1.Text = "Devices";
             devicesToolStripMenuItem1.Click += devicesToolStripMenuItem1_Click;
             // 
             // consoleToolStripMenuItem1
             // 
             consoleToolStripMenuItem1.Name = "consoleToolStripMenuItem1";
-            consoleToolStripMenuItem1.Size = new Size(224, 26);
+            consoleToolStripMenuItem1.Size = new Size(145, 26);
             consoleToolStripMenuItem1.Text = "Console";
             consoleToolStripMenuItem1.Click += consoleToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem1
             // 
             exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            exitToolStripMenuItem1.Size = new Size(224, 26);
+            exitToolStripMenuItem1.Size = new Size(145, 26);
             exitToolStripMenuItem1.Text = "Exit";
             exitToolStripMenuItem1.Click += exitToolStripMenuItem1_Click;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(13, 32);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.ReadOnly = true;
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
+            richTextBox1.Size = new Size(404, 190);
+            richTextBox1.TabIndex = 2;
+            richTextBox1.Text = "";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(13, 237);
+            numericUpDown1.Maximum = new decimal(new int[] { 128, 0, 0, 0 });
+            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(77, 27);
+            numericUpDown1.TabIndex = 3;
+            numericUpDown1.Value = new decimal(new int[] { 64, 0, 0, 0 });
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(13, 276);
+            numericUpDown2.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(77, 27);
+            numericUpDown2.TabIndex = 4;
+            numericUpDown2.Value = new decimal(new int[] { 3, 0, 0, 0 });
+            // 
+            // scanBtn
+            // 
+            scanBtn.Location = new Point(223, 278);
+            scanBtn.Name = "scanBtn";
+            scanBtn.Size = new Size(94, 29);
+            scanBtn.TabIndex = 5;
+            scanBtn.Text = "Scan";
+            scanBtn.UseVisualStyleBackColor = true;
+            scanBtn.Click += scanBtn_Click;
+            // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(223, 256);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(194, 16);
+            progressBar1.TabIndex = 6;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(96, 239);
+            label1.Name = "label1";
+            label1.Size = new Size(32, 20);
+            label1.TabIndex = 7;
+            label1.Text = "TTL";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(96, 278);
+            label2.Name = "label2";
+            label2.Size = new Size(94, 20);
+            label2.TabIndex = 8;
+            label2.Text = "Packet Count";
+            // 
+            // clearBtn
+            // 
+            clearBtn.Location = new Point(323, 278);
+            clearBtn.Name = "clearBtn";
+            clearBtn.Size = new Size(94, 29);
+            clearBtn.TabIndex = 9;
+            clearBtn.Text = "Clear";
+            clearBtn.UseVisualStyleBackColor = true;
+            clearBtn.Click += clearBtn_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(432, 317);
+            Controls.Add(clearBtn);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(progressBar1);
+            Controls.Add(scanBtn);
+            Controls.Add(numericUpDown2);
+            Controls.Add(numericUpDown1);
+            Controls.Add(richTextBox1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
@@ -163,6 +255,8 @@
             contextMenuStrip1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -184,5 +278,13 @@
         private ToolStripMenuItem devicesToolStripMenuItem1;
         private ToolStripMenuItem consoleToolStripMenuItem1;
         private ToolStripMenuItem exitToolStripMenuItem1;
+        private RichTextBox richTextBox1;
+        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericUpDown2;
+        private Button scanBtn;
+        private ProgressBar progressBar1;
+        private Label label1;
+        private Label label2;
+        private Button clearBtn;
     }
 }

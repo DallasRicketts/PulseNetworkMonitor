@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|solutionrelative:pulsenetworkmonitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|c:\\users\\dalla\\source\\repos\\pulsenetworkmonitor\\pulsenetworkmonitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|c:\\users\\dalla\\source\\repos\\pulsenetworkmonitor\\pulsenetworkmonitor\\formconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|solutionrelative:pulsenetworkmonitor\\formconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\pulsenetworkmonitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|solutionrelative:pulsenetworkmonitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|c:\\users\\dalla\\source\\repos\\pulsenetworkmonitor\\pulsenetworkmonitor\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|solutionrelative:pulsenetworkmonitor\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|c:\\users\\dalla\\source\\repos\\pulsenetworkmonitor\\pulsenetworkmonitor\\formconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|solutionrelative:pulsenetworkmonitor\\formconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B7E5959-B104-473F-8D59-E710868F2B5F}|PulseNetworkMonitor\\PulseNetworkMonitor.csproj|c:\\users\\dalla\\source\\repos\\pulsenetworkmonitor\\pulsenetworkmonitor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,24 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "PulseNetworkMonitor\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\Form1.Designer.cs",
-              "RelativeToolTip": "PulseNetworkMonitor\\Form1.Designer.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAD4v04AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-03T18:28:43.339Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\Form1.cs",
               "RelativeDocumentMoniker": "PulseNetworkMonitor\\Form1.cs",
@@ -71,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "FormConsole.cs",
               "DocumentMoniker": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\FormConsole.cs",
               "RelativeDocumentMoniker": "PulseNetworkMonitor\\FormConsole.cs",
@@ -92,8 +79,7 @@
               "RelativeToolTip": "PulseNetworkMonitor\\SteamMenuRenderer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T12:32:55.424Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-31T12:32:55.424Z"
             },
             {
               "$type": "Document",
@@ -103,9 +89,22 @@
               "RelativeDocumentMoniker": "PulseNetworkMonitor\\Form1.cs",
               "ToolTip": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\Form1.cs",
               "RelativeToolTip": "PulseNetworkMonitor\\Form1.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAqwAQBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAmwJIBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-31T12:19:52.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "PulseNetworkMonitor\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\Form1.Designer.cs",
+              "RelativeToolTip": "PulseNetworkMonitor\\Form1.Designer.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAD4vxYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T18:28:43.339Z",
               "EditorCaption": ""
             },
             {
@@ -117,8 +116,7 @@
               "ToolTip": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj",
               "RelativeToolTip": "PulseNetworkMonitor\\PulseNetworkMonitor.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-02T01:53:45.628Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-02T01:53:45.628Z"
             },
             {
               "$type": "Document",
@@ -130,8 +128,7 @@
               "RelativeToolTip": "PulseNetworkMonitor\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-02T01:18:29.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-02T01:18:29.734Z"
             },
             {
               "$type": "Document",

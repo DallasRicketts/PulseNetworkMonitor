@@ -1,6 +1,11 @@
 using System;
+using System.Collections.Concurrent;
 using System.Drawing;
+using System.Net.NetworkInformation;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace PulseNetworkMonitor
 {
@@ -25,6 +30,11 @@ namespace PulseNetworkMonitor
         private int _nextColorIndex = 1;
         private float _fadeStep = 0f;
         private float _fadeSpeed = 0.03f;
+
+        // Async scan engine fields
+        private SemaphoreSlim _concurrencyLimiter;
+        private ConcurrentQueue<ScanJob> _jobQueue;
+        private CancellationTokenSource _cts;
 
         public Form1()
         {
@@ -53,14 +63,37 @@ namespace PulseNetworkMonitor
 
         private void DoScan()
         {
-            MessageBox.Show("Scan Clicked");
-            // TODO: implement scan logic
+            // Cancel previous scan if running
+            _cts?.Cancel();
+
+            // Disable button while scanning
+            scanBtn.Enabled = false;
+            richTextBox1.Clear();
+            progressBar1.Value = 0;
+
+            _cts = new CancellationTokenSource();
+            int ttl = (int)numericUpDown1.Value;
+            int packetCount = (int)numericUpDown2.Value;
+
+            _ = StartScanAsync(ttl, packetCount, _cts.Token)
+                .ContinueWith(t =>
+                {
+                    Invoke(() => scanBtn.Enabled = true);
+
+                    if (t.IsCanceled)
+                    {
+                        Invoke(() => richTextBox1.AppendText("Scan canceled.\n"));
+                    }
+                    else if (t.Exception != null)
+                    {
+                        Invoke(() => richTextBox1.AppendText($"Error: {t.Exception}\n"));
+                    }
+                });
         }
 
         private void DoDevices()
         {
             MessageBox.Show("Devices Clicked");
-            // TODO: implement devices logic
         }
 
         private void DoConsole()
@@ -87,57 +120,20 @@ namespace PulseNetworkMonitor
 
         #region Designer Event Handlers
 
-        // Tray menu handlers (assigned in designer)
-        private void scanToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DoScan();
-        }
+        private void scanToolStripMenuItem_Click(object sender, EventArgs e) => DoScan();
+        private void scanToolStripMenuItem1_Click(object sender, EventArgs e) => DoScan();
 
-        private void devicesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DoDevices();
-        }
+        private void devicesToolStripMenuItem_Click(object sender, EventArgs e) => DoDevices();
+        private void devicesToolStripMenuItem1_Click(object sender, EventArgs e) => DoDevices();
 
-        private void consoleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DoConsole();
-        }
+        private void consoleToolStripMenuItem_Click(object sender, EventArgs e) => DoConsole();
+        private void consoleToolStripMenuItem1_Click(object sender, EventArgs e) => DoConsole();
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowSettings();
-        }
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e) => ShowSettings();
+        private void settingsToolStripMenuItem1_Click(object sender, EventArgs e) => ShowSettings();
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DoExit();
-        }
-
-        // Docked MenuStrip handlers (assigned in designer)
-        private void scanToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            DoScan();
-        }
-
-        private void devicesToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            DoDevices();
-        }
-
-        private void consoleToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            DoConsole();
-        }
-
-        private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ShowSettings();
-        }
-
-        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            DoExit();
-        }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => DoExit();
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e) => DoExit();
 
         #endregion
 
@@ -154,8 +150,8 @@ namespace PulseNetworkMonitor
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                e.Cancel = true;   // prevent actual close
-                HideMainForm();    // hide instead
+                e.Cancel = true;
+                HideMainForm();
             }
             else
             {
@@ -211,7 +207,153 @@ namespace PulseNetworkMonitor
         }
 
         #endregion
+
+        #region Scan Button Handler
+
+        private void scanBtn_Click(object sender, EventArgs e)
+        {
+            DoScan();
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            // Cancel any running scan
+            if (_cts != null)
+            {
+                _cts.Cancel();
+                _cts.Dispose();
+                _cts = null;
+            }
+
+            // Reset UI
+            progressBar1.Value = 0;
+            richTextBox1.Clear();
+
+            // Re-enable scan button
+            scanBtn.Enabled = true;
+        }
+
+        #endregion
+
+        #region Async LAN Scan Engine
+
+        private async Task StartScanAsync(int ttl, int packetCount, CancellationToken token)
+        {
+            _jobQueue = new ConcurrentQueue<ScanJob>();
+            _concurrencyLimiter = new SemaphoreSlim(50); // max concurrent jobs
+
+            // Step 1: Discover hosts automatically on local subnet
+            var hosts = DiscoverLocalSubnetHosts();
+
+            foreach (var ip in hosts)
+                _jobQueue.Enqueue(new ScanJob { IP = ip, Type = ScanType.ICMP, RetryCount = packetCount });
+
+            int totalJobs = _jobQueue.Count;
+            int completedJobs = 0;
+            var tasks = new List<Task>();
+
+            while (_jobQueue.TryDequeue(out var job))
+            {
+                await _concurrencyLimiter.WaitAsync(token);
+
+                var t = RunIcmpPingAsync(job, ttl, token)
+                    .ContinueWith(_ =>
+                    {
+                        _concurrencyLimiter.Release();
+                        Interlocked.Increment(ref completedJobs);
+
+                        if (!token.IsCancellationRequested)
+                        {
+                            // Update UI
+                            Invoke(() =>
+                            {
+                                richTextBox1.AppendText($"{job.IP} scanned.\n");
+                                progressBar1.Value = (int)((completedJobs / (double)totalJobs) * 100);
+                            });
+                        }
+                    }, token);
+
+                tasks.Add(t);
+            }
+
+            await Task.WhenAll(tasks);
+        }
+
+        private string[] DiscoverLocalSubnetHosts()
+        {
+            string localIp = GetLocalIPv4();
+            if (string.IsNullOrEmpty(localIp))
+                return Array.Empty<string>();
+
+            var subnet = string.Join(".", localIp.Split('.')[0..3]);
+            var hosts = new List<string>();
+
+            for (int i = 1; i <= 254; i++)
+                hosts.Add($"{subnet}.{i}");
+
+            return hosts.ToArray();
+        }
+
+        private string GetLocalIPv4()
+        {
+            foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (ni.OperationalStatus != OperationalStatus.Up) continue;
+                var props = ni.GetIPProperties();
+                foreach (var addr in props.UnicastAddresses)
+                {
+                    if (addr.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        return addr.Address.ToString();
+                }
+            }
+            return null;
+        }
+
+        private async Task RunIcmpPingAsync(ScanJob job, int ttl, CancellationToken token)
+        {
+            using var ping = new Ping();
+
+            for (int i = 0; i < job.RetryCount; i++)
+            {
+                if (token.IsCancellationRequested)
+                    break;
+
+                try
+                {
+                    var reply = await ping.SendPingAsync(job.IP, 1000); // 1s timeout
+                    if (reply.Status == IPStatus.Success)
+                        break; // host responded, stop retries
+                }
+                catch
+                {
+                    // Ignore individual ping errors
+                }
+
+                await Task.Delay(50, token);
+            }
+        }
+
+        #endregion
     }
+
+    #region Scan Job Model
+
+    public class ScanJob
+    {
+        public string IP;
+        public int Port;
+        public ScanType Type;
+        public int RetryCount;
+    }
+
+    public enum ScanType
+    {
+        ICMP,
+        ARP,
+        TCP
+    }
+
+    #endregion
 
     #region Tray Manager
 
