@@ -35,8 +35,9 @@ namespace PulseNetworkMonitor.UI
             this.ForeColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(220, 140);
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Cursor = System.Windows.Forms.Cursors.SizeAll;
 
-            // Enable dragging
+            // Enable dragging on the form itself
             this.MouseDown += OverlayForm_MouseDown;
             this.MouseMove += OverlayForm_MouseMove;
             this.MouseUp += OverlayForm_MouseUp;
@@ -56,6 +57,22 @@ namespace PulseNetworkMonitor.UI
             lblDown = MakeValueLabel(110, 40);
             lblLatency = MakeValueLabel(110, 70);
             lblLastScan = MakeValueLabel(110, 100);
+
+            // Ensure child controls also forward mouse events for dragging
+            // and show a drag cursor so the user knows it's movable.
+            var allLabels = new[]
+            {
+                labelUp, labelDown, labelLatency, labelLastScan,
+                lblUp, lblDown, lblLatency, lblLastScan
+            };
+
+            foreach (var lbl in allLabels)
+            {
+                lbl.Cursor = System.Windows.Forms.Cursors.SizeAll;
+                lbl.MouseDown += OverlayForm_MouseDown;
+                lbl.MouseMove += OverlayForm_MouseMove;
+                lbl.MouseUp += OverlayForm_MouseUp;
+            }
 
             // -------------------------
             // Add Controls
