@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PulseNetworkMonitor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf0075fcd034f8c30c176b4aa728b3d48c121610")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b66225e5a65e9a5d30db681855aa9e5da13b117f")]
 [assembly: System.Reflection.AssemblyProductAttribute("PulseNetworkMonitor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PulseNetworkMonitor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

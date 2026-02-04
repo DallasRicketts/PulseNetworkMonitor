@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g1isiaRnpOA=",
+  "dgSpecHash": "72z3vzxgaxc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj",
+  "projectFilePath": "C:\\Users\\dalla\\source\\repos\\PNM\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dalla\\.nuget\\packages\\microsoft.powershell.sdk\\7.5.4\\microsoft.powershell.sdk.7.5.4.nupkg.sha512"
   ],

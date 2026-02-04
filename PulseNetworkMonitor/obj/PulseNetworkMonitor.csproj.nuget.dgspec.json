@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj": {}
+    "C:\\Users\\dalla\\source\\repos\\PNM\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj": {
+    "C:\\Users\\dalla\\source\\repos\\PNM\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj",
+        "projectUniqueName": "C:\\Users\\dalla\\source\\repos\\PNM\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj",
         "projectName": "PulseNetworkMonitor",
-        "projectPath": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj",
+        "projectPath": "C:\\Users\\dalla\\source\\repos\\PNM\\PulseNetworkMonitor\\PulseNetworkMonitor.csproj",
         "packagesPath": "C:\\Users\\dalla\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dalla\\source\\repos\\PulseNetworkMonitor\\PulseNetworkMonitor\\obj\\",
+        "outputPath": "C:\\Users\\dalla\\source\\repos\\PNM\\PulseNetworkMonitor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dalla\\AppData\\Roaming\\NuGet\\NuGet.Config",
