@@ -397,3 +397,4 @@ C:\Users\dalla\source\repos\PNM\PulseNetworkMonitor\obj\Debug\net8.0-windows\ref
 C:\Users\dalla\source\repos\PNM\PulseNetworkMonitor\obj\Debug\net8.0-windows\PulseNetworkMonitor.pdb
 C:\Users\dalla\source\repos\PNM\PulseNetworkMonitor\obj\Debug\net8.0-windows\PulseNetworkMonitor.genruntimeconfig.cache
 C:\Users\dalla\source\repos\PNM\PulseNetworkMonitor\obj\Debug\net8.0-windows\ref\PulseNetworkMonitor.dll
+C:\Users\dalla\source\repos\PNM\PulseNetworkMonitor\obj\Debug\net8.0-windows\PulseNetworkMonitor.sourcelink.json

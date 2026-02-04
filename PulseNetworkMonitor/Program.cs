@@ -19,25 +19,21 @@ namespace PulseNetworkMonitor
 
             // Create controller
             var controller = new PulseController();
-
-            // Apply settings (interval, overlay, etc.)
             controller.ApplySettings();
-
-            // Start scanning
             controller.Start();
 
-            // Create main UI form
-            var form = new ScanResultsForm(controller);
-
-            // Allow Windows to register the window ONCE, then hide it
-            bool firstShow = true;
-            form.Shown += (s, e) =>
+            // Create main UI form (start hidden)
+            var form = new ScanResultsForm(controller)
             {
-                if (firstShow)
-                {
-                    firstShow = false;
-                    form.Hide();   // Hide immediately after first real show
-                }
+                ShowInTaskbar = false,
+                WindowState = FormWindowState.Minimized
+            };
+
+            // Hide BEFORE the form is ever shown
+            form.Load += (s, e) =>
+            {
+                form.Hide();
+                form.WindowState = FormWindowState.Normal; // Reset for when user opens it later
             };
 
             // Overlay logic
