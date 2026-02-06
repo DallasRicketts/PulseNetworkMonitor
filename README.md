@@ -20,7 +20,7 @@ Installation
 
 Clone the repository:
 
-git clone https://github.com/yourusername/Pulse.git
+git clone https://github.com/DallasRicketts/PulseNetworkMonitor.git
 
 
 Open Pulse.sln in Visual Studio 2022 or later.
